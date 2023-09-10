@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+   <link href="css/style.css" rel="stylesheet" />
+   <title>FRVGS Identity</title>
+</head>
+<body class="none" onkeydown="TriggeredKey(this)">
+   <div>
+      <span class="glow"></span>
+      <div>
+         <form class="frvgs_4k form" id="register" name="register" action="#">
+            <h1 class="intro"><span>FRVGS</span> IDENTITY</h1>
+            <div class="radio-wrapper">
+               <input class="hidden-radio" type="radio" id="radiom" name="sex" value="m" checked>
+               <label for="radiom" class="custom-radio male">
+                  <span class="gender-text">MALE</span>
+               </label>
+               <input class="hidden-radio" type="radio" id="radiof" name="sex" value="f">
+               <label for="radiof" class="custom-radio female">
+                  <span class="gender-text">FEMALE</span>
+               </label>
+            </div>
+            <div class="top-form">
+               <input id="firstname" type="text" name="firstname" placeholder="First Name" minlength="3" maxlength="8"
+                  pattern="[a-zA-Z]*" />
+               <input id="lastname" type="text" name="lastname" placeholder="Last Name" minlength="3" maxlength="10"
+                  pattern="[a-zA-Z]*" />
+            </div>
+            <div class="bottom-form">
+               <input id="dateofbirth" type="date" name="dateofbirth" min="1900-01-01" max="2010-01-01"
+                  onfocus="(this.type='date')" />
+               <input id="height" type="number" name="height" min="120" max="220" placeholder="Height (cm)" />
+            </div>
+            <div class="btn">
+               <button id="submit" type="submit">CREATE CHARACTER</button>
+            </div>
+         </form>
+      </div>
+   </div>
+   <script>
+      function TriggeredKey(e) {
+         var keycode;
+         if (window.event) keycode = window.event.keyCode;
+         if (window.event.keyCode === 13 || window.event.keyCode === 27) return false;
+      }
+   </script>
+   <script src="js/script.js" defer></script>
+</body>
+</html>

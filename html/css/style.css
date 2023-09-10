@@ -1,0 +1,632 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&display=swap");
+:root {
+   --main-theme: #1eff45;
+   --card-color: hsl(260deg 100% 3%);
+   --text-color: hsl(260deg 10% 55%);
+   --card-width: 1000px;
+   --card-height: 680px;
+   --border-width: 3px;
+   --card-radius: 2rem;
+   --card-width-4k: 2000px;
+   --card-height-4k: 1360px;
+   --border-width-4k: 6px;
+   --card-radius-4k: 4rem;
+   --bg-size: 1;
+   --hue: 0;
+   --hue-speed: 1;
+   --rotate: 0;
+   --animation-speed: 4s;
+   --interaction-speed: 0.55s;
+   --glow-scale: 1.5;
+   --scale-factor: 1;
+   --glow-blur: 6;
+   --glow-opacity: 1;
+   --glow-radius: 100;
+   --glow-radius-4k: 100;
+   --glow-rotate-unit: 1deg;
+}
+/*----------------------------------------------------*/
+.intro {
+   font-family: "Work Sans", sans-serif;
+}
+h1 {
+   margin: 0 auto;
+   color: white;
+   font-weight: 900;
+   margin: 0 auto;
+   text-align: center;
+   margin-bottom: 50px;
+}
+.intro span {
+   display: inline-block;
+   padding: 0.25em;
+   border-radius: 0.5rem;
+   background: var(--main-theme);
+   color: black;
+   font-weight: 900;
+   margin-right: 8px;
+}
+/*----------------------------------------------------*/
+body::before,
+body::after {
+   position: absolute;
+   display: block;
+   top: 8px;
+   left: 0;
+   right: 0;
+   margin: auto;
+   width: calc(100% - 160px);
+   max-width: 380px;
+   height: auto;
+   padding: 8px;
+   border-radius: 0.5rem;
+   background: var(--main-theme);
+   text-align: center;
+   font-family: "Poppins", sans-serif;
+}
+body::before,
+body::after {
+   display: none !important;
+}
+html,
+body {
+   height: 100%;
+   width: 100%;
+   padding: 0;
+   margin: 0;
+   overflow: hidden; 
+   background-color: transparent;
+   /*
+   background-image: url("../img/bg.jpg");
+   background-size: cover;
+    */
+   
+}
+body {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+body>div {
+   width: var(--card-width);
+   min-width: var(--card-width);
+   height: var(--card-height);
+   min-height: var(--card-height);
+   margin: auto;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   position: relative;
+   z-index: 2;
+   border-radius: var(--card-radius);
+}
+body>div:before,
+body>div:after {
+   content: "";
+   display: block;
+   position: absolute;
+   width: 100%;
+   height: 100%;
+   border-radius: var(--card-radius);
+}
+body>div>div {
+   position: absolute;
+   width: 100%;
+   height: 100%;
+   background: var(--card-color);
+   border-radius: calc(calc(var(--card-radius) * 0.9));
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   font-weight: 800;
+   text-transform: uppercase;
+   font-stretch: 150%;
+   font-size: clamp(1.5vw, 1.5vmin, 32px);
+   padding: calc(var(--card-width) / 8);
+}
+body>div>div:before {
+   content: "";
+   display: block;
+   position: absolute;
+   width: 100%;
+   height: 100%;
+   border-radius: calc(calc(var(--card-radius) * 0.9));
+   box-shadow: 0 0 20px black;
+   mix-blend-mode: color-burn;
+   z-index: -1;
+   background: #292929 radial-gradient(30% 30% at calc(var(--bg-x) * 1%) calc(var(--bg-y) * 1%), hsl(calc(calc(var(--hue) * var(--hue-speed)) * 1deg), 100%, 90%) calc(0% * var(--bg-size)), hsl(calc(calc(var(--hue) * var(--hue-speed)) * 1deg), 100%, 80%) calc(20% * var(--bg-size)), hsl(calc(calc(var(--hue) * var(--hue-speed)) * 1deg), 100%, 60%) calc(40% * var(--bg-size)), transparent 100%);
+   width: calc(100% + var(--border-width));
+   height: calc(100% + var(--border-width));
+   animation: hue-animation var(--animation-speed) linear infinite, rotate-bg var(--animation-speed) linear infinite;
+   transition: --bg-size var(--interaction-speed) ease;
+}
+body>div .glow {
+   --glow-translate-y: 0;
+   display: block;
+   position: absolute;
+   width: calc(var(--card-width) / 5);
+   height: calc(var(--card-width) / 5);
+   animation: rotate var(--animation-speed) linear infinite;
+   transform: rotateZ(calc(var(--rotate) * var(--glow-rotate-unit)));
+   transform-origin: center;
+   border-radius: calc(var(--glow-radius) * 10vw);
+}
+body>div .glow:after {
+   content: "";
+   display: block;
+   z-index: -2;
+   filter: blur(calc(var(--glow-blur) * 10px));
+   width: 130%;
+   height: 130%;
+   left: -15%;
+   top: -15%;
+   background: hsl(calc(calc(var(--hue) * var(--hue-speed)) * 1deg), 100%, 60%);
+   position: relative;
+   border-radius: calc(var(--glow-radius) * 10vw);
+   animation: hue-animation var(--animation-speed) linear infinite;
+   transform: scaleY(calc(var(--glow-scale) * var(--scale-factor) / 1.1)) scaleX(calc(var(--glow-scale) * var(--scale-factor) * 1.2)) translateY(calc(var(--glow-translate-y) * 1%));
+   opacity: var(--glow-opacity);
+}
+@keyframes shadow-pulse {
+   0%,
+   24%,
+   46%,
+   73%,
+   96% {
+      --white-shadow: 0.5;
+   }
+   12%,
+   28%,
+   41%,
+   63%,
+   75%,
+   82%,
+   98% {
+      --white-shadow: 2.5;
+   }
+   6%,
+   32%,
+   57% {
+      --white-shadow: 1.3;
+   }
+   18%,
+   52%,
+   88% {
+      --white-shadow: 3.5;
+   }
+}
+@keyframes rotate-bg {
+   0% {
+      --bg-x: 0;
+      --bg-y: 0;
+   }
+   25% {
+      --bg-x: 100;
+      --bg-y: 0;
+   }
+   50% {
+      --bg-x: 100;
+      --bg-y: 100;
+   }
+   75% {
+      --bg-x: 0;
+      --bg-y: 100;
+   }
+   100% {
+      --bg-x: 0;
+      --bg-y: 0;
+   }
+}
+@keyframes rotate {
+   from {
+      --rotate: -70;
+      --glow-translate-y: -65;
+   }
+   25% {
+      --glow-translate-y: -65;
+   }
+   50% {
+      --glow-translate-y: -65;
+   }
+   60%,
+   75% {
+      --glow-translate-y: -65;
+   }
+   85% {
+      --glow-translate-y: -65;
+   }
+   to {
+      --rotate: calc(360 - 70);
+      --glow-translate-y: -65;
+   }
+}
+@keyframes hue-animation {
+   0% {
+      --hue: 0;
+   }
+   100% {
+      --hue: 360;
+   }
+}
+@property --hue {
+   syntax: "<number>";
+   inherits: true;
+   initial-value: 0;
+}
+@property --rotate {
+   syntax: "<number>";
+   inherits: true;
+   initial-value: 0;
+}
+@property --bg-y {
+   syntax: "<number>";
+   inherits: true;
+   initial-value: 0;
+}
+@property --bg-x {
+   syntax: "<number>";
+   inherits: true;
+   initial-value: 0;
+}
+@property --glow-translate-y {
+   syntax: "<number>";
+   inherits: true;
+   initial-value: 0;
+}
+@property --bg-size {
+   syntax: "<number>";
+   inherits: true;
+   initial-value: 0;
+}
+@property --glow-opacity {
+   syntax: "<number>";
+   inherits: true;
+   initial-value: 0;
+}
+@property --glow-blur {
+   syntax: "<number>";
+   inherits: true;
+   initial-value: 0;
+}
+@property --glow-scale {
+   syntax: "<number>";
+   inherits: true;
+   initial-value: 2;
+}
+@property --glow-radius {
+   syntax: "<number>";
+   inherits: true;
+   initial-value: 2;
+}
+@property --white-shadow {
+   syntax: "<number>";
+   inherits: true;
+   initial-value: 0;
+}
+/*----------------------------------------------------*/
+/* Form & inputs*/
+.form {
+   z-index: 3;
+}
+.none {
+   display: none;
+}
+input {
+   width: 250px;
+   font-size: 1rem;
+   margin: 2rem;
+   border: none;
+   outline: none;
+   background: transparent;
+}
+input[type="text"],
+input[type="number"],
+input[type="date"] {
+   box-sizing: border-box;
+   margin-bottom: 20px;
+   padding: 8px;
+   height: 32px;
+   border: none;
+   border-bottom: 1px solid #fff;
+   transition: 0.2s ease;
+   color: #AAA;
+}
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="date"]:focus {
+   border-bottom: 2px solid var(--main-theme);
+   color: var(--main-theme);
+   transition: 0.2s ease;
+}
+input::placeholder {
+   color: #AAA;
+}
+input:focus::placeholder {
+   color: var(--main-theme);
+}
+/*----------------------------------------------------*/
+/*Mega Glow Button*/
+.btn {
+   position: relative;
+   top: 3.3rem;
+   left: 0;
+   width: 100%;
+   height: 50px;
+   margin: 0;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+.btn button {
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   background: rgba(255, 255, 255, 0.05);
+   box-shadow: 0 15px 15px rgba(0, 0, 0, 0.3);
+   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+   border-top: 1px solid rgba(255, 255, 255, 0.1);
+   border-radius: 0.5rem;
+   padding: 10px;
+   letter-spacing: 1px;
+   text-decoration: none;
+   overflow: hidden;
+   color: #fff;
+   font-weight: 400px;
+   z-index: 1;
+   transition: 0.5s;
+   backdrop-filter: blur(15px);
+}
+.btn:hover button {
+   letter-spacing: 3px;
+}
+.btn button::before {
+   content: "";
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 50%;
+   height: 100%;
+   background: linear-gradient(to left, rgba(255, 255, 255, 0.15), transparent);
+   transform: skewX(45deg) translate(0);
+   transition: 0.5s;
+   filter: blur(0px);
+}
+.btn:hover button::before {
+   transform: skewX(45deg) translate(200px);
+}
+.btn::before {
+   content: "";
+   position: absolute;
+   left: 50%;
+   transform: translatex(-50%);
+   bottom: -5px;
+   width: 30px;
+   height: 10px;
+   background: var(--main-theme);
+   box-shadow: 0 0 5px var(--main-theme), 0 0 15px var(--main-theme), 0 0 30px var(--main-theme),
+      0 0 60px var(--main-theme);
+   border-radius: 0.5rem;
+   transition: 0.5s;
+   transition-delay: 0.5;
+}
+.btn:hover::before {
+   bottom: 0;
+   height: 50%;
+   width: 80%;
+   border-radius: 0.5rem;
+}
+.btn::after {
+   content: "";
+   position: absolute;
+   left: 50%;
+   transform: translatex(-50%);
+   top: -5px;
+   width: 30px;
+   height: 10px;
+   background: var(--main-theme);
+   box-shadow: 0 0 5px var(--main-theme), 0 0 15px var(--main-theme), 0 0 30px var(--main-theme),
+      0 0 60px var(--main-theme);
+   border-radius: 0.5rem;
+   transition: 0.5s;
+   transition-delay: 0.5;
+}
+.btn:hover::after {
+   top: 0;
+   height: 50%;
+   width: 80%;
+   border-radius: 0.5rem;
+}
+/*----------------------------------------------------*/
+/* Radio wrapper layout */
+.radio-wrapper {
+   display: flex;
+   justify-content: center;
+   width: 100%;
+   margin-bottom: 30px;
+}
+.hidden-radio {
+   display: none;
+}
+.custom-radio {
+   flex-grow: 1;
+   max-width: 170px;
+   height: 170px;
+   margin-left: 30px;
+   margin-right: 30px;
+   border: 2px solid rgba(255, 255, 255, 0.5);
+   border-radius: 0.5rem;
+   text-align: center;
+   line-height: 100px;
+   cursor: pointer;
+   background-size: cover;
+   background-position: center;
+   position: relative;
+   transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+.male {
+   background-image: url('../img/male.jpg');
+}
+.female {
+   background-image: url('../img/female.jpg');
+}
+.hidden-radio:checked+.custom-radio {
+   border-color: var(--main-theme);
+   box-shadow: 0 0 10px var(--main-theme);
+}
+.gender-text {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, 10%);
+   color: #fff;
+   z-index: 1;
+   font-family: "Work Sans", sans-serif;
+   font-weight: 800;
+   letter-spacing: 0.2rem;
+   text-shadow: 
+   1px 1px 1px var(--main-theme), 
+   3px 3px 5px #000, 
+   6px 6px 10px #888;
+}
+.custom-radio:hover {
+   border: 2px solid #fff;
+   transition: border-color 0.3s ease, background-size 0.3s ease, box-shadow 0.3s ease;
+}
+input#firstname {
+   background-image: url('../img/firstname.png');
+   background-repeat: no-repeat;
+   background-position: left center;
+   background-position: right center;
+   background-size: 16px 16px;
+}
+input#lastname {
+   background-image: url('../img/lastname.png');
+   background-repeat: no-repeat;
+   background-position: left center;
+   background-position: right center;
+   background-size: 16px 16px;
+}
+input#height {
+   background-image: url('../img/height.png');
+   background-repeat: no-repeat;
+   background-position: left center;
+   background-position: right center;
+   background-size: 16px 16px;
+}
+input[type="date"]::-webkit-calendar-picker-indicator {
+   filter: invert(100%);
+}
+.bottom-form {
+   margin-top: 3.2rem;
+}
+.top-form {
+   margin-top: 3.7rem;
+}
+/*----------------------------------------------------*/
+/*4K resolution 2160px UI Rescale*/
+@media only screen and (min-height: 2160px) {
+   body>div {
+      width: var(--card-width-4k);
+      min-width: var(--card-width-4k);
+      height: var(--card-height-4k);
+      min-height: var(--card-height-4k);
+      border-radius: var(--card-radius-4k);
+   }
+   body>div:before,
+   body>div:after {
+      border-radius: var(--card-radius-4k);
+   }
+   body>div>div {
+      border-radius: calc(calc(var(--card-radius-4k) * 0.9));
+      padding: calc(var(--card-width-4k) / 8);
+   }
+   body>div>div:before {
+      border-radius: calc(calc(var(--card-radius-4k) * 0.9));
+      width: calc(100% + var(--border-width-4k));
+      height: calc(100% + var(--border-width-4k));
+   }
+   body>div .glow {
+      width: calc(var(--card-width-4k) / 5);
+      height: calc(var(--card-width-4k) / 5);
+      animation: rotate var(--animation-speed) linear infinite;
+      transform: rotateZ(calc(var(--rotate) * var(--glow-rotate-unit)));
+      border-radius: calc(var(--glow-radius) * 10vw);
+   }
+   body>div .glow:after {
+      filter: blur(calc(var(--glow-blur) * 10px));
+      border-radius: calc(var(--glow-radius) * 10vw);
+      animation: hue-animation var(--animation-speed) linear infinite;
+      transform: scaleY(calc(var(--glow-scale) * var(--scale-factor) / 1.1)) scaleX(calc(var(--glow-scale) * var(--scale-factor) * 1.2)) translateY(calc(var(--glow-translate-y) * 1%));
+      opacity: var(--glow-opacity);
+   }
+   .frvgs_4k{
+      transform: scale(2);
+   }
+   .gender-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, 10%);
+      font-size: 2rem;
+      color: #fff;
+      z-index: 1;
+      font-family: "Work Sans", sans-serif;
+      font-weight: 800;
+      letter-spacing: 0.2rem;
+   }
+   .btn {
+      position: relative;
+      top: 3.2rem;
+      left: 0;
+      width: 100%;
+      height: 70px;
+      font-size: 1.5rem;
+      font-weight: 900;
+      font-family: "Work Sans", sans-serif;
+   }
+   input {
+      width: 250px;
+      font-size: 1.3rem;
+      margin: 2rem;
+   }
+   input[type="text"],
+   input[type="number"],
+   input[type="date"] {
+      box-sizing: border-box;
+      margin-bottom: 20px;
+      padding: 8px;
+      height: 62px;
+      border: none;
+      border-bottom: 1px solid #fff;
+      transition: 0.2s ease;
+      color: #AAA;
+   }
+   .top-form {
+      margin-top: 0;
+   }
+   .bottom-form {
+      margin-bottom: 0;
+   }
+   input#firstname {
+      background-size: 24px 24px;
+   }
+   input#lastname {
+      background-size: 24px 24px;
+   }
+   input#height {
+      background-size: 24px 24px;
+   }
+   .radio-wrapper {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      margin-bottom: 0px;
+   }
+}
+/*----------------------------------------------------*/
